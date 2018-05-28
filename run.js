@@ -81,7 +81,6 @@ function temperatureHumidityChanged(valueObject) {
 
                 rgbLight.setColor(255, 0, 0);
                 oledDisplay.write(4, 0, "Temperature too high!");
-                tts.say("watch it! temperature was too high for the last 10 seconds");
                 console.log(chalk.red("Temperature too high for at least 10 seconds"));
                 pubnub.notifyTemperatureExceeded(boxId, temperature);
                 temperatureExceededMode = true;
@@ -147,7 +146,6 @@ function lightChanged(valueObject) {
             rgbLight.setColor(255, 0, 0);
             oledDisplay.write(5, 0, "Too much light!");
             console.log(chalk.red("Too much light for at least 20 seconds!"));
-            tts.say("Ahhhhh! This is too much light for our precious products!");
             pubnub.notifyLightExceeded(boxId, lightchange);
             lightExceededMode = true;
         }
