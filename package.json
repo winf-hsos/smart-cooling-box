@@ -1,0 +1,27 @@
+{
+  "name": "smart-cooling-box",
+  "version": "1.0.0",
+  "description": "The Software for the Smart Cooling Box. The box is based on Tinkerforge devices and was built at the University of Applied Sciences in Osnabrueck.",
+  "main": "run.js",
+  "scripts": {
+    "test": "run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winf-hsos/smart-cooling-box.git"
+  },
+  "keywords": [
+    "iot",
+    "tinkerforge"
+  ],
+  "author": "Nicolas Meseth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/winf-hsos/smart-cooling-box/issues"
+  },
+  "homepage": "https://github.com/winf-hsos/smart-cooling-box#readme",
+  "dependencies": {
+    "pubnub": "^4.20.3",
+    "tinkerforge-device-manager": "^0.2.5"
+  }
+}
