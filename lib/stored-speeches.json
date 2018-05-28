@@ -1,0 +1,12 @@
+{
+    "speeches": [
+        {
+            "text": "smart cooling box started",
+            "file": "started.mp3"
+        },
+        {
+            "text": "watch it! temperature was too high for the last 10 seconds",
+            "file": "temperature_too_high.mp3"
+        }
+    ]
+}

@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/winf-hsos/smart-cooling-box#readme",
   "dependencies": {
+    "@google-cloud/text-to-speech": "^0.1.0",
+    "play-sound": "^1.1.2",
     "pubnub": "^4.20.3",
     "tinkerforge-device-manager": "^0.2.5"
   }

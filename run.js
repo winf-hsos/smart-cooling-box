@@ -1,4 +1,5 @@
 var dm = require('tinkerforge-device-manager');
+var tts = require('./lib/GoogleTextToSpeechConnector.js');
 var chalk = require('chalk');
 
 /* A connector to PubNub to notify our dashboard */
@@ -31,6 +32,8 @@ function start(devices) {
     assignDevicesToVariables(devices);
 
     console.log("Smart cooling box started...");
+
+    tts.say("smart cooling box started");
 
     /* Setup listeners for sensors and button */
     temperatureHumiditySensor.registerListener(temperatureHumidityChanged);
@@ -78,6 +81,7 @@ function temperatureHumidityChanged(valueObject) {
 
                 rgbLight.setColor(255, 0, 0);
                 oledDisplay.write(4, 0, "Temperature too high!");
+                tts.say("watch it! temperature was too high for the last 10 seconds");
                 console.log(chalk.red("Temperature too high for at least 10 seconds"));
                 pubnub.notifyTemperatureExceeded(boxId, temperature);
                 temperatureExceededMode = true;
@@ -139,10 +143,11 @@ function lightChanged(valueObject) {
 
         timeSinceLightThresholdExceeded = new Date().getTime() - timeOfLightThresholdExceeded;
 
-        if (lightExceededMode == false && timeSinceLightThresholdExceeded >= 10000) {
+        if (lightExceededMode == false && timeSinceLightThresholdExceeded >= 20000) {
             rgbLight.setColor(255, 0, 0);
             oledDisplay.write(5, 0, "Too much light!");
-            console.log(chalk.red("Too much light for at least 10 seconds!"));
+            console.log(chalk.red("Too much light for at least 20 seconds!"));
+            tts.say("Ahhhhh! This is too much light for our precious products!");
             pubnub.notifyLightExceeded(boxId, lightchange);
             lightExceededMode = true;
         }
