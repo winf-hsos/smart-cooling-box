@@ -3,7 +3,7 @@ var chalk = require('chalk');
 
 /* A connector to PubNub to notify our dashboard */
 var { SmartCoolingBoxPubNubWrapper } = require('./lib/SmartCoolingBoxPubNubWrapper.js');
-var pubnub = new SmartCoolingBoxPubNubWrapper('pub-c-da11d0a7-08c7-421b-81bb-850fc4e390a1', 'sub-c-efadf9a2-cfcb-11e7-9f31-2ae01b29664a');
+var pubnub = new SmartCoolingBoxPubNubWrapper('<pubkey>', '<subkey>');
 
 dm.initialize();
 
