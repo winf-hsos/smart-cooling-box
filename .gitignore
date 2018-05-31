@@ -1,2 +1,4 @@
 node_modules
 lib/tts-auth.json
+test.js
+lib/mp3/tmp.mp3

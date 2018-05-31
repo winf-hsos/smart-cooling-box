@@ -1,11 +1,11 @@
 var dm = require('tinkerforge-device-manager');
 var tts = require('./lib/GoogleTextToSpeechConnector.js');
+var ml = require('./lib/AzureMLAdapter.js');
 var chalk = require('chalk');
 
 /* A connector to PubNub to notify our dashboard */
 var { SmartCoolingBoxPubNubWrapper } = require('./lib/SmartCoolingBoxPubNubWrapper.js');
 var pubnub = new SmartCoolingBoxPubNubWrapper('<pubkey>', '<subkey>');
-
 dm.initialize();
 
 Promise.all([
@@ -18,6 +18,17 @@ Promise.all([
     dm.getDeviceByIdentifier(286), // NFC
     dm.getDeviceByIdentifier(271)  // RGL LED
 ]).then(start).catch(handleError);
+
+/* Sample prediction */
+/*
+ml.setAPIKey("<your-key-here>");
+ml.predict(1, 18, 1400, 0, predictionFinished);
+
+function predictionFinished(results) {
+    console.dir(results);
+}
+*/
+/* End of sample prediction */
 
 /* The global variables for all the devices */
 var temperatureHumiditySensor, accelerometer, lightSensor, rgbButton, rgbLight, nfcReader, oledDisplay;
@@ -33,7 +44,7 @@ function start(devices) {
 
     console.log("Smart cooling box started...");
 
-    tts.say("smart cooling box started");
+    tts.say("smart cooling box started again");
 
     /* Setup listeners for sensors and button */
     temperatureHumiditySensor.registerListener(temperatureHumidityChanged);
